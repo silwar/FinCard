@@ -33,7 +33,7 @@ fun CardFrontItem(
     ConstraintLayout(
         modifier = modifier
             .aspectRatio(1.75f)
-            .background(Color.Black, shape = RoundedCornerShape(20.dp))
+            .background(Color.Black, shape = RoundedCornerShape(12.dp))
     ) {
         val (header, image, pan, layout) = createRefs()
         Row(modifier = Modifier
@@ -49,7 +49,7 @@ fun CardFrontItem(
                 modifier = Modifier.weight(1f)
             )
             Image(
-                painter = painterResource(id = R.drawable.currency_rupee),
+                painter = painterResource(id = R.drawable.rupay),
                 contentDescription = "Network Logo"
             )
         }
