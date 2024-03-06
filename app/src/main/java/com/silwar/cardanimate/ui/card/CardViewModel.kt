@@ -48,7 +48,8 @@ class CardViewModel : ViewModel() {
             )
         )
     }
-    fun setCardCvv(cvv: String){
+
+    fun setCardCvv(cvv: String) {
         var result = DEFAULT_CARD_CVV
         cvv.forEach {
             result = result.replaceFirst('0', it)
@@ -77,7 +78,7 @@ class CardViewModel : ViewModel() {
     private fun String.toCardFormat(): String {
         var result = DEFAULT_CARD_NUMBER
         this.forEach {
-            result = result.replaceFirst('0', it)
+            result = result.replaceFirst('#', it)
         }
         return result
     }
