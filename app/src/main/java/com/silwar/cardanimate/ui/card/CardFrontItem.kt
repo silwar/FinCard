@@ -17,6 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -27,7 +28,6 @@ import com.silwar.cardanimate.R
 @Composable
 fun CardFrontItem(
     modifier: Modifier = Modifier,
-    viewModel: CardViewModel,
     state: CardInfoState
 ) {
     ConstraintLayout(
@@ -46,6 +46,8 @@ fun CardFrontItem(
             Text(
                 text = "CREDIT CARD",
                 color = Color.White,
+                fontSize = 14.sp,
+                letterSpacing = 2.sp,
                 modifier = Modifier.weight(1f)
             )
             Image(
@@ -63,9 +65,9 @@ fun CardFrontItem(
                     start.linkTo(parent.start, margin = 18.dp)
                 })
         Text(text = state.frontInfoState.cardNumber,
-            fontSize = 24.sp,
+            fontSize = 22.sp,
             color = Color.White,
-            letterSpacing = 5.sp,
+            letterSpacing = 4.sp,
             maxLines = 1,
             modifier = Modifier
                 .padding(
@@ -86,22 +88,32 @@ fun CardFrontItem(
                 Text(
                     text = "CARD HOLDER",
                     fontSize = 11.sp,
+                    letterSpacing = 2.sp,
                     color = Color.White
                 )
-                Spacer(modifier = Modifier.height(5.dp))
+                Spacer(modifier = Modifier.height(3.dp))
                 Text(
                     text = state.frontInfoState.cardHolderName,
-                    color = Color.White
+                    color = Color.White,
+                    letterSpacing = 2.sp,
+                    fontSize = 15.sp
                 )
             }
             Column(modifier = Modifier) {
                 Text(
                     text = "EXPIRY",
-                    fontSize = 11.sp,
-                    color = Color.White
+                    fontSize = 10.sp,
+                    letterSpacing = 2.sp,
+                    color = Color.White,
+                    textAlign = TextAlign.End
                 )
-                Spacer(modifier = Modifier.height(5.dp))
-                Text(text = state.frontInfoState.cardExpiry, color = Color.White)
+                Spacer(modifier = Modifier.height(3.dp))
+                Text(
+                    text = state.frontInfoState.cardExpiry,
+                    color = Color.White,
+                    letterSpacing = 2.sp,
+                    fontSize = 15.sp
+                )
             }
         }
     }
@@ -112,5 +124,5 @@ fun CardFrontItem(
 fun CardFrontItemPreview() {
     val viewModel: CardViewModel = viewModel()
     val state = viewModel.uiState.collectAsState().value
-    CardFrontItem(viewModel = viewModel, state = state)
+    CardFrontItem(state = state)
 }

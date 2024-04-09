@@ -35,16 +35,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.core.text.isDigitsOnly
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun CardInputItem(
     modifier: Modifier = Modifier,
-    viewModel: CardViewModel,
-    state: CardInfoState
+    viewModel: CardViewModel
 ) {
     var pan by remember { mutableStateOf("") }
     var name by remember { mutableStateOf("") }
@@ -80,7 +81,7 @@ fun CardInputItem(
         OutlinedTextField(
             value = pan,
             modifier = Modifier.fillMaxWidth(),
-
+            shape = RoundedCornerShape(25.dp),
             onValueChange = {
                 if (it.isDigitsOnly() && it.length <= panLength) {
                     pan = it
@@ -98,7 +99,7 @@ fun CardInputItem(
         OutlinedTextField(
             value = name,
             modifier = Modifier.fillMaxWidth(),
-
+            shape = RoundedCornerShape(25.dp),
             onValueChange = { value ->
                 if (value.length <= nameLength &&
                     value.all { it.isLetter() || it.isWhitespace() }
@@ -123,6 +124,7 @@ fun CardInputItem(
                     OutlinedTextField(
                         value = selectedMonth,
                         readOnly = true,
+                        shape = RoundedCornerShape(25.dp),
                         onValueChange = { selectedMonth = it },
                         modifier = Modifier
                             .weight(1f)
@@ -166,6 +168,7 @@ fun CardInputItem(
                     OutlinedTextField(
                         value = selectedYear,
                         readOnly = true,
+                        shape = RoundedCornerShape(25.dp),
                         onValueChange = { selectedYear = it },
                         modifier = Modifier
                             .weight(1f)
@@ -207,6 +210,7 @@ fun CardInputItem(
                 Spacer(modifier = Modifier.padding(top = 12.dp))
                 OutlinedTextField(
                     value = cvv,
+                    shape = RoundedCornerShape(25.dp),
                     modifier = Modifier
                         .fillMaxWidth()
                         .onFocusChanged {
@@ -226,4 +230,11 @@ fun CardInputItem(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun CardInputItemPreview() {
+    val viewModel: CardViewModel = viewModel()
+    CardInputItem(viewModel = viewModel)
 }

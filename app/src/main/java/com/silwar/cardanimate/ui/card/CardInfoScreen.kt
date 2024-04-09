@@ -23,12 +23,12 @@ import com.silwar.cardanimate.ui.FlipView
 @Composable
 fun CardInfoScreen(
     modifier: Modifier = Modifier
-        .background(Color.LightGray)
 ) {
     val viewModel: CardViewModel = viewModel()
     val state: CardInfoState = viewModel.uiState.collectAsState().value
     Column(
         modifier = modifier
+            .background(Color.LightGray)
             .fillMaxWidth()
             .padding(all = 16.dp),
         verticalArrangement = Arrangement.SpaceBetween
@@ -45,7 +45,6 @@ fun CardInfoScreen(
                 front = {
                     CardFrontItem(
                         modifier = Modifier,
-                        viewModel,
                         state
                     )
                 },
@@ -60,8 +59,7 @@ fun CardInfoScreen(
             Spacer(modifier = Modifier.padding(8.dp))
             CardInputItem(
                 modifier = Modifier,
-                viewModel,
-                state
+                viewModel
             )
         }
         Text(
