@@ -68,8 +68,8 @@ fun CardInputItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .shadow(elevation = 5.dp, shape = RoundedCornerShape(25.dp))
-            .background(Color.White, shape = RoundedCornerShape(15.dp))
+            .shadow(elevation = 5.dp, shape = RoundedCornerShape(22.dp))
+            .background(Color.White, shape = RoundedCornerShape(12.dp))
             .padding(18.dp)
     ) {
         Text(
