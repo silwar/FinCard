@@ -1,6 +1,12 @@
 pluginManagement {
     repositories {
-        google()
+        google {
+            content {
+                includeGroupByRegex("com\\.android.*")
+                includeGroupByRegex("com\\.google.*")
+                includeGroupByRegex("androidx.*")
+            }
+        }
         mavenCentral()
         gradlePluginPortal()
     }
@@ -11,7 +17,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    versionCatalogs {
+        create("libs") {
+            from(files("/gradle/wrapper/libs.versions.toml"))
+        }
+    }
 }
-
-rootProject.name = "FinCard"
+rootProject.name = "Card Animate"
 include(":app")
